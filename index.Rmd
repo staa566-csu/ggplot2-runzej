@@ -1,0 +1,45 @@
+---
+title: "Untitled"
+author: "Runze Jiang"
+date: "2022/9/20"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r}
+library(ggplot2)
+###dot plot
+ggplot(data = mpg,mapping = aes(drv,hwy,color=cyl))+
+  geom_point(size=3,shape=16)
+###density plot
+ggplot(data = mpg,mapping = aes(hwy))+
+  geom_density(aes(fill=factor(drv)),size=0.5)+
+  labs(title = "Density plot")
+###  simple lm smooth
+ggplot(data = mpg,mapping = aes(displ,cty))+
+  geom_point(color="green",size=2)+
+  geom_smooth(method = "lm")+
+  labs(title="Hwy VS displ")
+### facet wrap using
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(size=1.2) +
+  geom_smooth(color="green",method = "lm") +
+  facet_wrap(~drv)+
+  labs(title="Hwy VS displ")
+           
+
+
+```
+
+The dataset I select is mpg in R.
+drv:type of drive train, f(front) r(rear) 4wd(4)
+hwy:highway miles per gallon
+cyl:number of cylinders
+The first plot I made is the dot plot and the size 3 and shape 16 is more to recognize and make analysis.
+One key conclusion from the plot:
+  When having the same drv, the more number of cyl, the less hwy car runs.
+
+
+The second plot I made is about the density plot and the plot shows the density of three types of driving.
+The 4wd driving plot looks pretty normal.
